@@ -1,0 +1,40 @@
+package commands;
+
+import domain.Vehicle;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Scanner;
+
+/**
+ *класс, задающий реализацию замены элемента по ID
+ */
+public class UpdateId {
+    static int nesessaryID = 0;
+
+    /**
+     *
+     * @param LinkedList
+     * @param textFromScanner
+     */
+    public void execute(LinkedList<Vehicle> LinkedList, String textFromScanner, Scanner scanner) {
+        Iterator<Vehicle> iterator = LinkedList.iterator();
+        FinderNumbers finder = new FinderNumbers();
+        int id = finder.find(textFromScanner);
+
+        while (iterator.hasNext()) {
+            Vehicle currentVehicle = iterator.next();
+            if (currentVehicle.getId() == id) {
+                nesessaryID = id;
+                LinkedList.remove(currentVehicle);
+                break;
+            }
+        }
+        Add add = new Add();
+        add.execute(LinkedList,scanner);
+
+    }
+
+
+}
+
